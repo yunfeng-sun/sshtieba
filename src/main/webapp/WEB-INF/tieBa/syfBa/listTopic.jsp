@@ -37,7 +37,7 @@
             <s:iterator value="allTopic" >  <%--  将遍历的每一个topic都压入栈顶，通过javaBean的属性直接获取数据  --%>
             <tr class="data">
                 <td class="num"><s:property value="id"/></td>
-                <td class="num"><s:property value="replySet,size()"/></td>
+                <td class="num"><s:property value="replySet.size()"/></td>
                 <td>
                     <!-- 通过id查topic start   -->
                     <s:a namespace="/" action="TopicAction_findById">  <!-- 传到的action  -->

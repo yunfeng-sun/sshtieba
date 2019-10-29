@@ -26,6 +26,9 @@ public class TopicAction extends ActionSupport implements ModelDriven<Topic> {
     public String findAll(){
         List<Topic> allTopic = service.findAllTopic();
         //todo 将查询的结果存放到值栈中 root     在jsp通过key直接获得 遍历即可
+//        for (Topic tp : allTopic) {
+//            System.out.println(tp.getLastReplyTime()+"==================>"+tp.getId());
+//        }
         ActionContext.getContext().getValueStack().set("allTopic",allTopic);
         return "findAll";
     }

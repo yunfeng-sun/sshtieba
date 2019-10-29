@@ -6,8 +6,10 @@
     <session-factory>
         <!-- 基本配置
             property 的name 若以 hibernate开头，则可以省略 hibernate ；两者一致，没区别。
+            Asia/Shanghai
+             serverTimezone=UTC 再数据库中直接插入数据后再通过hibernate获取时间，会在时区中 多加 8小时，导致时间显示不一致
         -->
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tieba?serverTimezone=UTC</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tieba?serverTimezone=Asia/Shanghai</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.username">root</property>
         <property name="connection.password">123456</property>

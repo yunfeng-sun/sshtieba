@@ -16,7 +16,7 @@
         <property name="createTime"> <!--  hibernate默认timestamp，会一直更改，创建时间是固定的  todo 用sql -->
             <column name="createTime" sql-type="datetime"/>
         </property>
-        <set name="replySet" order-by="createTime desc"> <!-- 自动转为sql -->
+        <set name="replySet" order-by="createDate asc"> <!-- 自动转为sql -->
             <key column="topic_id"/>
             <one-to-many class="com.tieba.domain.Reply" />
         </set>

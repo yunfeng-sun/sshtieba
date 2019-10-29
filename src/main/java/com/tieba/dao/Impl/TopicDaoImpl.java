@@ -8,7 +8,7 @@ import java.util.List;
 // 转为 泛型 / 反射
 public class TopicDaoImpl implements TopicDao {
     public List<Topic> findAll() {
-        return HJUtils.getCurrentSession().createQuery("from Topic ").list();
+        return HJUtils.getCurrentSession().createQuery("from Topic t order by t.lastReplyTime desc").list();
     }
 
     public void save(Topic topic) {

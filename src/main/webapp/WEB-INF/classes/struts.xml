@@ -16,10 +16,14 @@
             <result name="findAll" type="dispatcher">/WEB-INF/tieBa/syfBa/listTopic.jsp</result>
         </action>
         <action name="TopicAction_save" class="com.tieba.action.TopicAction" method="save">
-            <result name="save" type="redirectAction">TopicAction_findAll</result>
+            <result name="save" type="redirectAction">topicAction_findAll</result>
         </action>
         <action name="TopicAction_findById" class="com.tieba.action.TopicAction" method="findTopicById">
             <result name="findTopicById" >/WEB-INF/tieBa/syfBa/showTopic.jsp</result>
+        </action>
+        <action name="replyAction_save" class="com.tieba.action.ReplyAction" method="save">
+            <!-- struts的配置文件 获取 值栈中 的数据  动态得到id -->
+            <result name="save" type="redirectAction">TopicAction_findById.action?id=${topic.id}</result>
         </action>
     </package>
 </struts>

@@ -23,7 +23,9 @@
 </div>
 <!--   菜单      -->
 <div class="menu-bar">
-    <a href="listTopic.jsp">返回首页</a>
+    <s:a namespace="/" action="topicAction_findAll">  <!-- 传到的action  -->
+        返回首页
+    </s:a>
 </div>
 <!--   当前主题贴数      -->
 <div style="padding:10px 30px;font-size:12px;font-family: '宋体'">
@@ -47,11 +49,11 @@
         </td>
     </tr>
 </table>
-<!--  显示回复列表 start  -->
-<s:iterator value="@findTopic.replySet" var="reply"> <!-- 使用var 添加数据到 context map 中；注意 root栈顶也有临时的-->
+<!--  显示回复列表 start                           todo 遍历时，status记录了每一次遍历的详细数据，对象是  IteratorStatus===>内部由方法可调用      -->
+<s:iterator value="#findTopic.replySet" var="reply" status="vs"> <!-- 使用var 添加数据到 context map 中；注意 root栈顶也有临时的-->
 <table class="postList" cellspacing="0">
     <tr class="title">
-        <td width="20" class="num">2</td>
+        <td width="20" class="num"><s:property value="#vs.count + 1"/> </td>
         <td></td>
     </tr>
     <tr class="content">
@@ -68,5 +70,26 @@
 </table>
 </s:iterator>
 <!--  显示回复列表 end  -->
+
+<div style="margin-bottom: 20px"/>
+<!-- 回复表单  -->
+<s:form action="replyAction_save" namespace="/">
+    <%--隐藏域，传递主题     ognl 赋值--%>
+    <s:hidden name="topic.id" value="%{#findTopic.id}"/>
+    <table class="publishArticleForm">
+        <tr>
+            <td class="label">评 论 内 容</td>
+            <td>
+                <s:textfield cssClass="content" name="replyContent"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <s:submit value="发 表"/>
+            </td>
+        </tr>
+    </table>
+</s:form>
 </body>
 </html>

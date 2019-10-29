@@ -27,6 +27,11 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     public void saveReply(Reply reply) {
+        //添加回复
         replyDao.save(reply);
+        //todo 修改主题的  最后回复时间，值为当前回复的创建时间
+        Topic topic = topicDao.findById(reply.getTopic().getId()); // 执行查询  数据存放入 一级缓存和快照
+        topic.setLastReplyTime(reply.getCreateDate());  // 修改一级缓存的内容
+        //至此 已经更新 todo  提交时 进行 一级缓存与 快照的比较 ，触发update更新
     }
 }
